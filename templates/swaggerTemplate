@@ -1,0 +1,63 @@
+paths:
+  /[model_name_for_routes]:
+    get:
+      summary: Get a list of [model_name_for_routes]
+      description: Retrieve a list of all [model_name_for_routes].
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+    post:
+      summary: Create a new [model_name]
+      description: Create a new [model_name] with the provided data.
+      requestBody:
+        required: true
+        content:
+          application/json:
+      responses:
+        '201':
+          description: [model_name] created successfully
+          content:
+            application/json:
+
+  /[model_name_for_routes]/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        description: ID of the [model_name] to retrieve or update
+    get:
+      summary: Get a [model_name] by ID
+      description: Retrieve a [model_name] by their ID.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+        '404':
+          description: User not found
+    put:
+      summary: Update a [model_name] by ID
+      description: Update a [model_name]'s information by their ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+      responses:
+        '200':
+          description: [model_name] updated successfully
+          content:
+            application/json:
+        '404':
+          description: [model_name] not found
+    delete:
+      summary: Delete a [model_name] by ID
+      description: Delete a [model_name] by their ID.
+      responses:
+        '204':
+          description: [model_name] deleted successfully
+        '404':
+          description: [model_name] not found

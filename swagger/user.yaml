@@ -1,0 +1,14 @@
+paths:
+  /user:
+    get:
+      summary: Returns a user.
+      description: Optional extended description in CommonMark or HTML.
+      responses:
+        '200':    # status code
+          description: A JSON of user properties
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  type: string

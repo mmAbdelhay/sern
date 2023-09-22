@@ -1,0 +1,5 @@
+const [method_name][model_name]Rules = {
+
+};
+
+module.exports = [method_name][model_name]Rules;
