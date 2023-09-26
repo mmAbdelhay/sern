@@ -15,7 +15,8 @@ module.exports.store = async (req, res) => {
     const validation = new Validator(req.body, create[model_name]Rules);
     if (validation.fails()) return res.status(402).json(validation.errors.all());
 
-    const data =  await [model_name]Repository.insert(req.body);
+    const data =  await [model_name]Repository.insert(validation.input);
+    if(!data) return res.status(500).json({message: "Cannot insert [model_name]"})
     return res.status(201).json({message: "[model_name] created Successfully", data: data});
 };
 
@@ -23,14 +24,18 @@ module.exports.update = async (req, res) => {
     const validation = new Validator(req.body, update[model_name]Rules);
     if (validation.fails()) return res.status(402).json(validation.errors.all());
 
+    if (!req.params.id) res.status(404).json({message: "Not found"});
+
     const data =  await [model_name]Repository.update(
         await [model_name]Repository.findBy({id: req.params.id}),
-        req.body
+        validation.input
     );
     return res.status(201).json({message: "[model_name] updated Successfully", data: data});
 };
 
 module.exports.destroy = async (req, res) => {
+    if (!req.params.id) res.status(404).json({message: "Not found"});
+
     await [model_name]Repository.destroy(req.params.id);
     return res.status(204).json({message: "[model_name] deleted Successfully"});
 };
