@@ -1,9 +1,11 @@
 const [model_name]Controller = require('../controllers/[model_name]/[model_name]Controller');
+const {[model_name]ValidationMiddleware} = require("../middlewares/[model_name]/[model_name]ValidationMiddleware");
+const {[model_name]ExistenceMiddleware} = require("../middlewares/[model_name]/[model_name]ExistenceMiddleware");
 
 module.exports = function (app) {
     app.get("/[model_name_for_routes]", [model_name]Controller.index);
-    app.post("/[model_name_for_routes]", [model_name]Controller.store);
-    app.get("/[model_name_for_routes]/:id", [model_name]Controller.show);
-    app.put("/[model_name_for_routes]/:id/update", [model_name]Controller.update);
-    app.delete("/[model_name_for_routes]/:id/delete", [model_name]Controller.destroy);
+    app.post("/[model_name_for_routes]", [model_name]ValidationMiddleware, [model_name]Controller.store);
+    app.get("/[model_name_for_routes]/:Book",[[model_name]ValidationMiddleware, [model_name]ExistenceMiddleware] , [model_name]Controller.show);
+    app.put("/[model_name_for_routes]/:Book/update",[[model_name]ValidationMiddleware, [model_name]ExistenceMiddleware] , [model_name]Controller.update);
+    app.delete("/[model_name_for_routes]/:Book/delete",[model_name]ExistenceMiddleware, [model_name]Controller.destroy);
 };

@@ -1,0 +1,13 @@
+27-09-2023 11:43:16 [logger.js] [error]: Database selection failed err:  Table 'sern.Books' doesn't exist
+27-09-2023 11:43:47 [logger.js] [error]: Database selection failed err:  Table 'sern.Books' doesn't exist
+27-09-2023 11:43:48 [logger.js] [error]: Database selection failed err:  Table 'sern.Books' doesn't exist
+27-09-2023 11:44:02 [logger.js] [error]: Database selection failed err:  Table 'sern.Books' doesn't exist
+27-09-2023 11:44:22 [logger.js] [error]: Database selection failed err:  Table 'sern.Books' doesn't exist
+27-09-2023 11:46:49 [logger.js] [error]: Database Selection failed err:  The attributes option must be an array of column names or an object
+27-09-2023 11:48:31 [logger.js] [error]: Database Selection failed err:  The attributes option must be an array of column names or an object
+27-09-2023 11:48:58 [logger.js] [error]: Database Selection failed err:  The attributes option must be an array of column names or an object
+27-09-2023 11:49:20 [logger.js] [error]: Database Selection failed err:  The attributes option must be an array of column names or an object
+27-09-2023 11:49:22 [logger.js] [error]: Database Selection failed err:  The attributes option must be an array of column names or an object
+27-09-2023 11:49:36 [logger.js] [error]: Database Selection failed err:  The attributes option must be an array of column names or an object
+27-09-2023 11:50:44 [logger.js] [error]: Database update client info failed err:  Book.update is not a function
+27-09-2023 11:50:48 [logger.js] [error]: Database update client info failed err:  Book.update is not a function

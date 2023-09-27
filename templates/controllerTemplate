@@ -1,41 +1,24 @@
 const [model_name]Repository = require("../../repositories/[model_name]Repository");
-const Validator = require('validatorjs');
-const create[model_name]Rules = require("./create[model_name]Rules");
-const update[model_name]Rules = require("./update[model_name]Rules");
 
 module.exports.index = async (req, res) => {
     return res.status(200).json({data: await [model_name]Repository.findAll()});
 };
 
 module.exports.show = async (req, res) => {
-    return res.status(200).json({data: await [model_name]Repository.findBy({id: req.params.id})});
+    return res.status(200).json({data: req.params.[model_name]});
 };
 
 module.exports.store = async (req, res) => {
-    const validation = new Validator(req.body, create[model_name]Rules);
-    if (validation.fails()) return res.status(402).json(validation.errors.all());
-
-    const data =  await [model_name]Repository.insert(validation.input);
-    if(!data) return res.status(500).json({message: "Cannot insert [model_name]"})
+    const data = await [model_name]Repository.insert(req.body.validated);
     return res.status(201).json({message: "[model_name] created Successfully", data: data});
 };
 
 module.exports.update = async (req, res) => {
-    const validation = new Validator(req.body, update[model_name]Rules);
-    if (validation.fails()) return res.status(402).json(validation.errors.all());
-
-    if (!req.params.id) res.status(404).json({message: "Not found"});
-
-    const data =  await [model_name]Repository.update(
-        await [model_name]Repository.findBy({id: req.params.id}),
-        validation.input
-    );
-    return res.status(201).json({message: "[model_name] updated Successfully", data: data});
+    const data = await [model_name]Repository.update(req.params.[model_name], req.body.validated);
+    return res.status(200).json({message: "[model_name] updated Successfully", data: data});
 };
 
 module.exports.destroy = async (req, res) => {
-    if (!req.params.id) res.status(404).json({message: "Not found"});
-
-    await [model_name]Repository.destroy(req.params.id);
-    return res.status(204).json({message: "[model_name] deleted Successfully"});
+    await [model_name]Repository.destroy(req.params.[model_name].id);
+    return res.status(200).json({message: "[model_name] deleted Successfully"});
 };

@@ -1,0 +1,12 @@
+const [model_name]Repository = require("../../repositories/[model_name]Repository");
+
+module.exports.[model_name]ExistenceMiddleware = async (req, res, next) => {
+    if (!req.params.[model_name]) return res.status(404).json({message: "Not found"});
+
+    const item = await [model_name]Repository.findBy({id: req.params.[model_name]});
+    if (!item) return res.status(404).json({message: "Not found"});
+
+    req.params.[model_name] = item
+
+    next();
+};

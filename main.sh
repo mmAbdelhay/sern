@@ -77,6 +77,20 @@ generate_swagger(){
   sed -i "s/\[model_name_for_routes\]/$model_name_for_routes/g" "./swagger/${model_name}.yaml"
 }
 
+generate_middlewares(){
+  mkdir "./middlewares/${model_name}"
+
+  cp "templates/existenceMiddlewareTemplate" "./middlewares/${model_name}/${model_name}ExistenceMiddleware.js"
+  sed -i "s/\[model_name\]/$model_name/g" "./middlewares/${model_name}/${model_name}ExistenceMiddleware.js"
+
+  cp "templates/validationMiddlewareTemplate" "./middlewares/${model_name}/${model_name}ValidationMiddleware.js"
+  sed -i "s/\[model_name\]/$model_name/g" "./middlewares/${model_name}/${model_name}ValidationMiddleware.js"
+}
+
+migrate(){
+    npm run migrate
+}
+
 generate_crud() {
   read -p "Enter the model name: " model_name
   generate_model
@@ -84,6 +98,8 @@ generate_crud() {
   generate_controller
   generate_routes
   generate_swagger
+  generate_middlewares
+  migrate
 }
 
 ############### end of functions #################
